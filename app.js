@@ -17,31 +17,42 @@ app.get("/cronServer", (req, res) => {
 
 
 
-function scheduleTask() {
-  // Generate a random interval between 30 and 40 seconds
-  const interval = Math.floor(Math.random() * (40 - 30 + 1) + 30) * 1000;
+// function scheduleTask() {
+//   // Generate a random interval between 30 and 40 seconds
+//   const interval = Math.floor(Math.random() * (40 - 30 + 1) + 30) * 1000;
 
-  console.log(`Scheduling next task in ${interval / 1000} seconds`);
+//   console.log(`Scheduling next task in ${interval / 1000} seconds`);
 
-  // Use setTimeout to schedule the task
-  setTimeout(() => {
-    console.log("Running a task");
-    
-    // Call the /cronServer endpoint programmatically
-    axios
-      .get("https://tset-render.onrender.com/cronServer")
-      .then((response) => console.log(response.data))
-      .catch((error) =>
-        console.error("Error calling /cronServer:", error.message)
-      );
-    
-    // Schedule the next task
-    scheduleTask();
-  }, interval);
-}
+//   // Use setTimeout to schedule the task
+//   setTimeout(() => {
+//     console.log("Running a task");
 
-// Start the initial task scheduling
-scheduleTask();
+//     // Call the /cronServer endpoint programmatically
+//     axios
+//       .get("https://tset-render.onrender.com/cronServer")
+//       .then((response) => console.log(response.data))
+//       .catch((error) =>
+//         console.error("Error calling /cronServer:", error.message)
+//       );
+
+//     // Schedule the next task
+//     scheduleTask();
+//   }, interval);
+// }
+
+// // Start the initial task scheduling
+// scheduleTask();
+
+// Define your cron job
+cron.schedule('*/14 * * * *', () => {
+  // This function runs every 30 seconds
+  console.log('Running a task every 14 minute');
+  // You can call an endpoint or perform a task here
+  // Example: Call the /cronServer endpoint programmatically
+  axios.get('https://tset-render.onrender.com/cronServer')
+    .then(response => console.log(response.data))
+    .catch(error => console.error('Error calling /cronServer:', error.message));
+});
 
 
 app.listen(PORT, () => {
