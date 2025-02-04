@@ -44,7 +44,7 @@ app.get("/cronServer", (req, res) => {
 // scheduleTask();
 
 // Define your cron job
-cron.schedule('*/14 * * * *', () => {
+cron.schedule('*/5 * * * *', () => {
   // This function runs every 30 seconds
   console.log('Running a task every 14 minute');
   // You can call an endpoint or perform a task here
