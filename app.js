@@ -49,7 +49,7 @@ cron.schedule('*/5 * * * *', () => {
   console.log('Running a task every 14 minute');
   // You can call an endpoint or perform a task here
   // Example: Call the /cronServer endpoint programmatically
-  axios.get('https://tset-render.onrender.com/cronServer')
+  axios.get('https://backend-chat-app-rq2k.onrender.com')
     .then(response => console.log(response.data))
     .catch(error => console.error('Error calling /cronServer:', error.message));
 });
