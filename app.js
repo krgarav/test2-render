@@ -44,12 +44,17 @@ app.get("/cronServer", (req, res) => {
 // scheduleTask();
 
 // Define your cron job
+
 cron.schedule('*/5 * * * *', () => {
   // This function runs every 30 seconds
-  console.log('Running a task every 14 minute');
+  console.log('Running a task every 5 minute');
   // You can call an endpoint or perform a task here
   // Example: Call the /cronServer endpoint programmatically
   axios.get('https://backend-chat-app-rq2k.onrender.com')
+    .then(response => console.log(response.data))
+    .catch(error => console.error('Error calling /cronServer:', error.message));
+
+    axios.get('https://india-tour-backend.onrender.com')
     .then(response => console.log(response.data))
     .catch(error => console.error('Error calling /cronServer:', error.message));
 });
